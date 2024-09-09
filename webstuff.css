@@ -1,95 +1,160 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #282828; /* Gruvbox background color */
-    color: #ebdbb2; /* Gruvbox text color */
+    font-family: 'Roboto', sans-serif;
+    background-color: #282828; /* Gruvbox dark background */
+    color: #ebdbb2; /* Gruvbox light foreground */
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-header {
+/* Header */
+.header {
     text-align: center;
     padding: 20px;
+    position: relative;
+    z-index: 100; /* Ensure header is above all other elements */
 }
 
-.hero h1 {
-    color: #fabd2f; /* Gruvbox yellow */
-    font-size: 2.5em;
+.header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #f39c12; /* Gruvbox yellow */
 }
 
-button {
-    background-color: #458588; /* Gruvbox blue */
+/* Buttons */
+.button {
+    background-color: #504945; /* Gruvbox brown */
     border: none;
-    color: #ebdbb2; /* Gruvbox text color */
-    padding: 15px 25px;
+    color: #ebdbb2; /* Gruvbox light foreground */
+    padding: 10px 20px;
+    margin: 5px;
     font-size: 1em;
     cursor: pointer;
-    border-radius: 5px;
-    margin: 10px;
+    transition: background-color 0.3s ease;
+    z-index: 100; /* Ensure buttons are above other elements */
 }
 
-button:hover {
-    background-color: #83a598; /* Gruvbox light blue */
+.button:hover {
+    background-color: #3c3836; /* Gruvbox darker brown */
 }
 
-.highlight {
-    color: #fabd2f; /* Gruvbox yellow */
-}
-
-/* Modal Styles */
-.modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Panels */
+.panel {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay with blur */
-    backdrop-filter: blur(5px); /* Blurry background */
-    z-index: 1000;
-}
-
-.modal-content {
-    background-color: #3c3836; /* Gruvbox dark background */
-    color: #ebdbb2; /* Gruvbox text color */
+    background: rgba(0, 0, 0, 0.8); /* Darker semi-transparent background */
+    color: #ebdbb2; /* Gruvbox light foreground */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 600px;
-    position: relative;
+    box-sizing: border-box;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: scale(0.95);
+    z-index: 90; /* Ensure panels are below the header and buttons */
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5em;
-    cursor: pointer;
-}
-
-.hidden {
+.panel.hidden {
     display: none;
 }
 
-/* Icon Styles */
-h2 i, ul li i {
-    color: #fabd2f; /* Gruvbox yellow */
-    margin-right: 10px;
-    font-size: 1.2em;
+.panel .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2em;
+    color: #f39c12; /* Gruvbox yellow */
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-/* Fade-in effect */
-.fade-in {
-    animation: fadeIn 0.5s ease-in-out;
+.panel .close:hover {
+    color: #ebdbb2; /* Gruvbox light foreground */
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+/* Panel Content */
+.panel-content {
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+/* Contact Info */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.contact-info a {
+    color: #ebdbb2; /* Gruvbox light foreground */
+    text-decoration: none;
+    font-size: 1.25em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-info i {
+    color: #f39c12; /* Gruvbox yellow */
+}
+
+/* Quote Container */
+.quote-container {
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* Darker transparent background */
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px); /* Blurs the background behind the container */
+    max-width: 80%;
+    position: fixed; /* Fixed position to make sure it stays on the screen */
+    top: 50%; /* Center it vertically */
+    left: 50%; /* Center it horizontally */
+    transform: translate(-50%, -50%); /* Adjust position */
+    z-index: 80; /* Ensure the quote container is above panels but below header and buttons */
+}
+
+/* Quote Text */
+.quote-text {
+    font-size: 1.25em;
+    font-weight: 300; /* Light font weight for a modern look */
+    color: #f39c12; /* Gruvbox yellow */
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.1); /* Slightly dark background for contrast */
+    border-radius: 10px;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.quote-text::before {
+    content: "“";
+    font-size: 4em;
+    color: #f39c12; /* Gruvbox yellow */
+    position: absolute;
+    top: -0.2em;
+    left: -0.5em;
+}
+
+.quote-text::after {
+    content: "”";
+    font-size: 4em;
+    color: #f39c12; /* Gruvbox yellow */
+    position: absolute;
+    bottom: -0.2em;
+    right: -0.5em;
+}
+
+.quote-container:hover .quote-text {
+    transform: scale(1.05);
+    opacity: 0.9;
 }
