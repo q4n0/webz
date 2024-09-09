@@ -1,30 +1,20 @@
-// Modal functionality
-const modal = document.getElementById('modal');
-const modalBody = document.getElementById('modal-body');
-const closeBtn = document.querySelector('.close');
+function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(panel => {
+        panel.classList.add('hidden');
+    });
+    document.getElementById(id).classList.remove('hidden');
+}
 
-// Content sections
-const whoamiContent = document.getElementById('whoami-content').innerHTML;
-const githubContent = document.getElementById('github-content').innerHTML;
-const contactContent = document.getElementById('contact-content').innerHTML;
+function hidePanel(id) {
+    document.getElementById(id).classList.add('hidden');
+}
 
-// Event listeners for buttons
-document.getElementById('whoami-button').addEventListener('click', function() {
-    modalBody.innerHTML = whoamiContent;
-    modal.classList.remove('hidden');
-});
-
-document.getElementById('projects-button').addEventListener('click', function() {
-    modalBody.innerHTML = githubContent;
-    modal.classList.remove('hidden');
-});
-
-document.getElementById('contact-button').addEventListener('click', function() {
-    modalBody.innerHTML = contactContent;
-    modal.classList.remove('hidden');
-});
-
-// Close modal on click
-closeBtn.addEventListener('click', function() {
-    modal.classList.add('hidden');
+// Fade in effect for the quote
+document.addEventListener("DOMContentLoaded", function() {
+    const quoteContainer = document.querySelector('.quote-container');
+    quoteContainer.style.opacity = 0;
+    quoteContainer.style.transition = 'opacity 2s';
+    setTimeout(() => {
+        quoteContainer.style.opacity = 1;
+    }, 100);
 });
